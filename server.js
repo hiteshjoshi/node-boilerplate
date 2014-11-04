@@ -6,29 +6,18 @@
 var fs = require('fs');
 var express = require('express');
 var passport = require('passport');
-var config = require('./config/index');
+var config = require('config');
+var db = require('db');
 
 var app = express();
 var port = process.env.PORT || 3000;
 
-var useMongo = function(){
-	var mongoose = require('mongoose');
-	// Connect to mongodb
-	var connect = function () {
-	  var options = { server: { socketOptions: { keepAlive: 1 } } };
-	  mongoose.connect(config.mongodb, options);
-	};
-	connect();
-
-	mongoose.connection.on('error', console.log);
-	mongoose.connection.on('disconnected', connect);
-};
 
 
 
 //if we need mongodb support?
 if(config.useMongoDB)
-	useMongo();
+	db.useMongo();
 
 
 // Bootstrap mongodb models

@@ -8,6 +8,8 @@ var express = require('express');
 var passport = require('passport');
 var config = require('config');
 
+console.log(config);
+
 var app = express();
 var port = process.env.PORT || 3000;
 
@@ -34,7 +36,7 @@ if(config.mongo)
 // Bootstrap mongodb models
 if(config.mongo)
 	fs.readdirSync(__dirname + '/app/models/mongodb/').forEach(function (file) {
-	  if (~file.indexOf('.js')) require(__dirname + '/app/models/' + file);
+	  if (~file.indexOf('.js')) require(__dirname + '/app/models/mongodb/' + file);
 	});
 
 // Bootstrap passport config

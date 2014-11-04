@@ -18,9 +18,6 @@ module.exports = function (app, passport) {
     if (~file.indexOf('.js')) require(config.root + '/app/controllers/' + file).boot(app,passport);
   });
 
-
-  //app.get('/', home.index);
-
   /**
    * Error handling
    */

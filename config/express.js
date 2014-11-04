@@ -17,7 +17,7 @@ var csrf = require('csurf');
 var mongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
 var winston = require('winston');
-var helpers = require('view-helpers');
+//var helpers = require('view-helpers');
 var config = require('config');
 var pkg = require('../package.json');
 
@@ -68,11 +68,11 @@ module.exports = function (app, passport) {
   //app.set('view engine', 'html');
 
   // expose package.json to views
-  app.use(function (req, res, next) {
-    res.locals.pkg = pkg;
-    res.locals.env = env;
-    next();
-  });
+  // app.use(function (req, res, next) {
+  //   res.locals.pkg = pkg;
+  //   res.locals.env = env;
+  //   next();
+  // });
 
   // bodyParser should be above methodOverride
   app.use(bodyParser());
@@ -104,24 +104,18 @@ module.exports = function (app, passport) {
   app.use(flash());
 
   // should be declared after session and flash
-  app.use(helpers(pkg.name));
+  //app.use(helpers(pkg.name));
 
   // adds CSRF support
   if (process.env.NODE_ENV !== 'test') {
     app.use(csrf());
 
-
-
     // This could be moved to view-helpers :-)
     app.use(function(req, res, next){
-      res.locals.csrf_token = req.csrfToken();
+      //res.locals.csrf_token = req.csrfToken();
 
+      res.cookie('XSRF-TOKEN', req.csrfToken());
       res.setHeader("X-CSRF-TOKEN", req.csrfToken());
-
-
-      var token = (req.headers['x-csrf-token'])
-               || (req.headers['x-xsrf-token']);
-      
   
       next();
     });

@@ -30,12 +30,12 @@ var env = process.env.NODE_ENV || 'development';
 module.exports = function (app, passport) {
 
   // Compression middleware (should be placed before express.static)
-  app.use(compression({
-    threshold: 512
-  }));
+  // app.use(compression({
+  //   threshold: 512
+  // }));
 
   // Static files middleware
-  app.use(express.static(config.root + '/public'));
+  //app.use(express.static(config.root + '/public'));
 
   // Use winston on production
   var log;
@@ -56,16 +56,16 @@ module.exports = function (app, passport) {
   if (env !== 'test') app.use(morgan(log));
 
   // Swig templating engine settings
-  if (env === 'development' || env === 'test') {
-    swig.setDefaults({
-      cache: false
-    });
-  }
+  // if (env === 'development' || env === 'test') {
+  //   swig.setDefaults({
+  //     cache: false
+  //   });
+  // }
 
   // set views path, template engine and default layout
-  app.engine('html', swig.renderFile);
-  app.set('views', config.root + '/app/views');
-  app.set('view engine', 'html');
+  //app.engine('html', swig.renderFile);
+  //app.set('views', config.root + '/app/views');
+  //app.set('view engine', 'html');
 
   // expose package.json to views
   app.use(function (req, res, next) {
@@ -110,9 +110,19 @@ module.exports = function (app, passport) {
   if (process.env.NODE_ENV !== 'test') {
     app.use(csrf());
 
+
+
     // This could be moved to view-helpers :-)
     app.use(function(req, res, next){
       res.locals.csrf_token = req.csrfToken();
+
+      res.setHeader("X-CSRF-TOKEN", req.csrfToken());
+
+
+      var token = (req.headers['x-csrf-token'])
+               || (req.headers['x-xsrf-token']);
+      
+  
       next();
     });
   }

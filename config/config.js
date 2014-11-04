@@ -25,7 +25,5 @@ var defaults = {
 module.exports = {
   development: extend(development, defaults),
   test: extend(test, defaults),
-  production: extend(production, defaults),
-  mongo:useMongoDB,
-  mysql:useMySql
+  production: extend(production, defaults)
 }[process.env.NODE_ENV || 'development'];

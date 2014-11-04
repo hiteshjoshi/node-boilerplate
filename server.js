@@ -6,7 +6,7 @@
 var fs = require('fs');
 var express = require('express');
 var passport = require('passport');
-var config = require('config');
+var config = require('./config/index');
 
 var app = express();
 var port = process.env.PORT || 3000;

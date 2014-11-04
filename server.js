@@ -8,8 +8,6 @@ var express = require('express');
 var passport = require('passport');
 var config = require('config');
 
-console.log(config);
-
 var app = express();
 var port = process.env.PORT || 3000;
 
@@ -18,7 +16,7 @@ var useMongo = function(){
 	// Connect to mongodb
 	var connect = function () {
 	  var options = { server: { socketOptions: { keepAlive: 1 } } };
-	  mongoose.connect(config.db, options);
+	  mongoose.connect(config.mongodb, options);
 	};
 	connect();
 

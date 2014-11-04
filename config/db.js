@@ -1,3 +1,4 @@
+var config = require('config');
 
 var useMongo = function(){
 	var mongoose = require('mongoose');

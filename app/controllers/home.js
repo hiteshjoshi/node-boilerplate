@@ -3,6 +3,13 @@
  * Module dependencies.
  */
 
-exports.index = function (req, res) {
-  res.send(200);
+
+var Home = {};
+
+Home.Index = function(req,res){
+	res.send("API is up and running.");
+};
+
+exports.boot = function (app,passport) {
+  app.get('/',Home.Index);
 };

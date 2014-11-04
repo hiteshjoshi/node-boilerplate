@@ -4,15 +4,21 @@
  */
 
 var mongoose = require('mongoose');
-var home = require('home');
-
+var config = require('config');
 /**
  * Expose
  */
 
 module.exports = function (app, passport) {
 
-  app.get('/', home.index);
+
+  //Boot all the controllers
+  fs.readdirSync(config.root + '/app/controllers/').forEach(function (file) {
+    if (~file.indexOf('.js')) require(config.root + '/app/controllers/' + file).boot(app,passport);
+  });
+
+
+  //app.get('/', home.index);
 
   /**
    * Error handling
@@ -27,12 +33,12 @@ module.exports = function (app, passport) {
     }
     console.error(err.stack);
     // error page
-    res.status(500).render('500', { error: err.stack });
+    res.status(500).send({ error: err.stack });
   });
 
   // assume 404 since no middleware responded
   app.use(function (req, res, next) {
-    res.status(404).render('404', {
+    res.status(404).send({
       url: req.originalUrl,
       error: 'Not found'
     });

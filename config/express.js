@@ -91,7 +91,7 @@ module.exports = function (app, passport) {
   app.use(session({
     secret: pkg.name,
     store: new mongoStore({
-      url: config.db,
+      url: config.mongodb,
       collection : 'sessions'
     })
   }));

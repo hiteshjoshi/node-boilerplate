@@ -29,12 +29,12 @@ var useMongo = function(){
 
 
 //if we need mongodb support?
-if(config.mongo)
+if(config.useMongoDB)
 	useMongo();
 
 
 // Bootstrap mongodb models
-if(config.mongo)
+if(config.useMongoDB)
 	fs.readdirSync(__dirname + '/app/models/mongodb/').forEach(function (file) {
 	  if (~file.indexOf('.js')) require(__dirname + '/app/models/mongodb/' + file);
 	});

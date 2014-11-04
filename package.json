@@ -1,10 +1,10 @@
 {
-  "name": "node-express-mongoose",
+  "name": "node-boilerplate",
   "description": "A boilerplate application for express mongoose",
   "version": "1.0.0",
   "author": {
-    "name": "Madhusudhan Srinivasa",
-    "email": "me@madhums.me"
+    "name": "Hitesh",
+    "email": "me@hiteshjoshi.com"
   },
   "engines": {
     "node": "0.10.x"
@@ -33,7 +33,9 @@
     "passport-local": "^1.0.0",
     "swig": "^1.4.2",
     "view-helpers": "^0.1.5",
-    "winston": "^0.8.0"
+    "winston": "^0.8.0",
+    "mysql":"^2.5.2",
+    "sequelize": "^1.7.x"
   },
   "devDependencies": {
     "nodemon": "latest",
@@ -43,7 +45,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/madhums/node-express-mongoose.git"
+    "url": "git@github.com:hiteshjoshi/node-boilerplate.git"
   },
   "keywords": [
     "mvc",
